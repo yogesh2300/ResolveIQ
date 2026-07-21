@@ -281,45 +281,7 @@ button:disabled {
 .topbar-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.icon-button,
-.avatar {
-  display: grid;
-  width: 40px;
-  height: 40px;
-  place-items: center;
-  border-radius: 12px;
-}
-
-.icon-button {
-  color: var(--ink);
-  background: transparent;
-  border: 1px solid var(--line);
-  cursor: pointer;
-  transition: background 160ms ease, transform 160ms ease;
-}
-
-.icon-button:hover {
-  background: var(--surface-muted);
-  transform: translateY(-1px);
-}
-
-.icon-button svg {
-  width: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-width: 1.7;
-}
-
-.avatar {
-  color: var(--white);
-  background: #45443f;
-  border: 2px solid #cbc7bc;
-  font-size: 11px;
-  font-weight: 700;
+  margin-left: auto;
 }
 
 .button {
@@ -2442,10 +2404,6 @@ button:disabled {
 }
 
 @media (max-width: 430px) {
-  .icon-button {
-    display: none;
-  }
-
   .page-heading h2 {
     font-size: 27px;
   }
@@ -2993,12 +2951,39 @@ body {
   flex: 0 0 auto;
 }
 
-.notes-scroll-area {
+.notes-content-scroll {
   flex: 1 1 auto;
   min-height: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-color: #8e8b83 #ebe8e0;
   scrollbar-width: thin;
+}
+
+.notes-content-scroll:focus-visible {
+  outline: 2px solid #77756e;
+  outline-offset: -3px;
+}
+
+.notes-content-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.notes-content-scroll::-webkit-scrollbar-track {
+  background: #ebe8e0;
+  border-radius: 99px;
+}
+
+.notes-content-scroll::-webkit-scrollbar-thumb {
+  background: #8e8b83;
+  border: 2px solid #ebe8e0;
+  border-radius: 99px;
+}
+
+.notes-scroll-area {
+  min-height: 0;
+  overflow: visible;
 }
 
 .empty-notes {
@@ -3300,6 +3285,12 @@ body {
     flex-direction: column;
   }
 
+  .notes-card,
+  .notes-content-scroll {
+    flex: none;
+    overflow: visible;
+  }
+
   .detail-main-column,
   .detail-side-column {
     gap: 10px;
@@ -3472,8 +3463,9 @@ body {
     overflow: visible;
   }
 
-  .notes-scroll-area {
-    max-height: 320px;
+  .notes-content-scroll {
+    flex: none;
+    overflow: visible;
   }
 
   .note-form textarea {
@@ -3483,8 +3475,7 @@ body {
 
 @media (max-width: 520px) {
   .topbar-create,
-  .topbar-subtitle,
-  .icon-button {
+  .topbar-subtitle {
     display: none;
   }
 

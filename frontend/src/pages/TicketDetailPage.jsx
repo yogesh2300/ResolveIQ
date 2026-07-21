@@ -229,61 +229,68 @@ function TicketDetailPage() {
               </span>
             </div>
 
-            <div className="notes-scroll-area">
-              {notes.length === 0 ? (
-                <div className="empty-notes">
-                  <span aria-hidden="true">⌁</span>
-                  <p>No notes have been added yet.</p>
-                </div>
-              ) : (
-                <ol className="notes-list">
-                  {notes.map((note, index) => (
-                    <li key={note.id}>
-                      <span className="note-number" aria-hidden="true">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <div>
-                        <p>{note.note_text}</p>
-                        <time dateTime={note.created_at}>
-                          {formatDateTime(note.created_at)}
-                        </time>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </div>
+            <div
+              className="notes-content-scroll"
+              aria-label="Notes and add note form"
+              role="region"
+              tabIndex="0"
+            >
+              <div className="notes-scroll-area">
+                {notes.length === 0 ? (
+                  <div className="empty-notes">
+                    <span aria-hidden="true">⌁</span>
+                    <p>No notes have been added yet.</p>
+                  </div>
+                ) : (
+                  <ol className="notes-list">
+                    {notes.map((note, index) => (
+                      <li key={note.id}>
+                        <span className="note-number" aria-hidden="true">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <div>
+                          <p>{note.note_text}</p>
+                          <time dateTime={note.created_at}>
+                            {formatDateTime(note.created_at)}
+                          </time>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+              </div>
 
-            <form className="note-form" onSubmit={handleNoteSubmit} noValidate>
-              <div className="note-form-heading">
-                <label htmlFor="note_text">Add an internal note</label>
-                <span>{noteText.length} / 2000</span>
-              </div>
-              <textarea
-                id="note_text"
-                name="note_text"
-                value={noteText}
-                onChange={(event) => {
-                  setNoteText(event.target.value)
-                  setNoteFeedback(null)
-                }}
-                placeholder="Add context for the next support agent..."
-                rows="4"
-                maxLength="2000"
-                disabled={isNoteSaving}
-                aria-invalid={noteFeedback?.type === 'error'}
-              />
-              <div className="update-form-footer">
-                <FeedbackMessage feedback={noteFeedback} />
-                <button
-                  className="button button-dark compact-button"
-                  type="submit"
-                  disabled={isUpdating}
-                >
-                  {isNoteSaving ? 'Adding note…' : 'Add Note'}
-                </button>
-              </div>
-            </form>
+              <form className="note-form" onSubmit={handleNoteSubmit} noValidate>
+                <div className="note-form-heading">
+                  <label htmlFor="note_text">Add an internal note</label>
+                  <span>{noteText.length} / 2000</span>
+                </div>
+                <textarea
+                  id="note_text"
+                  name="note_text"
+                  value={noteText}
+                  onChange={(event) => {
+                    setNoteText(event.target.value)
+                    setNoteFeedback(null)
+                  }}
+                  placeholder="Add context for the next support agent..."
+                  rows="4"
+                  maxLength="2000"
+                  disabled={isNoteSaving}
+                  aria-invalid={noteFeedback?.type === 'error'}
+                />
+                <div className="update-form-footer">
+                  <FeedbackMessage feedback={noteFeedback} />
+                  <button
+                    className="button button-dark compact-button"
+                    type="submit"
+                    disabled={isUpdating}
+                  >
+                    {isNoteSaving ? 'Adding note…' : 'Add Note'}
+                  </button>
+                </div>
+              </form>
+            </div>
           </section>
         </div>
 
