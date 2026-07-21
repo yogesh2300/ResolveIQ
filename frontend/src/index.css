@@ -3098,10 +3098,87 @@ body {
 }
 
 @media (min-width: 1101px) {
+  .detail-side-column .detail-priority-card {
+    padding: 10px 15px;
+  }
+
+  .detail-priority-heading {
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  .detail-priority-heading > div > span,
+  .detail-score > div:first-child > span,
+  .detail-reasons > span {
+    margin-bottom: 4px;
+  }
+
+  .detail-priority-heading h3 {
+    font-size: 20px;
+  }
+
+  .detail-score {
+    padding: 9px 0;
+  }
+
+  .detail-score > div:first-child {
+    margin-bottom: 8px;
+  }
+
+  .detail-score strong {
+    font-size: 24px;
+  }
+
+  .detail-score-track {
+    height: 4px;
+  }
+
+  .detail-reasons {
+    padding-top: 9px;
+  }
+
+  .detail-reasons ul {
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .detail-reasons li {
+    line-height: 1.32;
+  }
+
+  .detail-side-column .customer-card {
+    padding: 6px 15px;
+  }
+
+  .customer-card .detail-card-header {
+    gap: 8px;
+    margin-bottom: 4px;
+    padding-bottom: 6px;
+  }
+
+  .customer-card .detail-card-index {
+    width: 28px;
+    height: 28px;
+  }
+
+  .customer-card .detail-card-header .section-kicker {
+    line-height: 1.1;
+  }
+
+  .customer-card .detail-card-header h3 {
+    font-size: 15px;
+    line-height: 1.1;
+  }
+
+  .customer-details > div {
+    padding: 4px 0;
+  }
+
   .detail-side-column .ticket-info-card {
     flex: 1 1 0;
     min-height: 0;
     max-height: 100%;
+    padding: 15px 17px;
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -3113,7 +3190,18 @@ body {
     position: sticky;
     top: 0;
     z-index: 2;
+    margin-bottom: 8px;
+    padding-bottom: 9px;
     background: #fffefa;
+  }
+
+  .ticket-info-card dl > div {
+    padding: 7px 0;
+  }
+
+  .ticket-info-card .status-update-form {
+    margin-top: 11px;
+    padding-top: 11px;
   }
 
   .ticket-info-card:focus-visible {
