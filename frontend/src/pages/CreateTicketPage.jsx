@@ -247,7 +247,7 @@ function CreateTicketPage() {
                 </>
               ) : (
                 <>
-                  Create &amp; Triage Ticket
+                  Create Ticket
                   <span aria-hidden="true">↗</span>
                 </>
               )}

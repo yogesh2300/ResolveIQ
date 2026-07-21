@@ -362,7 +362,12 @@ function TicketDetailPage() {
             </dl>
           </section>
 
-          <section className="detail-card ticket-info-card">
+          <section
+            className="detail-card ticket-info-card"
+            aria-label="Ticket information and status controls"
+            role="region"
+            tabIndex="0"
+          >
             <div className="detail-card-header">
               <span className="detail-card-index">04</span>
               <div>

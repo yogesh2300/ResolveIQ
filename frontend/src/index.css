@@ -3097,6 +3097,46 @@ body {
   padding-top: 9px;
 }
 
+@media (min-width: 1101px) {
+  .detail-side-column .ticket-info-card {
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: #8e8b83 #ebe8e0;
+    scrollbar-width: thin;
+  }
+
+  .ticket-info-card .detail-card-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #fffefa;
+  }
+
+  .ticket-info-card:focus-visible {
+    outline: 2px solid #77756e;
+    outline-offset: -3px;
+  }
+
+  .ticket-info-card::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .ticket-info-card::-webkit-scrollbar-track {
+    background: #ebe8e0;
+    border-radius: 99px;
+  }
+
+  .ticket-info-card::-webkit-scrollbar-thumb {
+    background: #8e8b83;
+    border: 2px solid #ebe8e0;
+    border-radius: 99px;
+  }
+}
+
 .detail-state,
 .detail-skeleton {
   width: 100%;
@@ -3157,8 +3197,19 @@ body {
   }
 
   .detail-layout {
-    grid-template-columns: minmax(0, 1.28fr) minmax(225px, 0.72fr);
+    grid-template-columns: 1fr;
     gap: 10px;
+    height: auto;
+  }
+
+  .ticket-detail-page {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .detail-main-column {
+    display: flex;
+    flex-direction: column;
   }
 
   .detail-main-column,
