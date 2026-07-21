@@ -1,1 +1,1 @@
-"""DeskPilot backend application package."""
+"""ResolveIQ backend application package."""

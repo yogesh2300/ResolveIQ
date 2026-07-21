@@ -22,6 +22,7 @@ class Ticket(Base):
     subject: Mapped[str] = mapped_column(String(500), nullable=False)
     description: Mapped[str] = mapped_column(Text, nullable=False)
     status: Mapped[str] = mapped_column(String(50), default="Open", nullable=False)
+    category: Mapped[str] = mapped_column(String(50), default="General", nullable=False)
     priority: Mapped[str] = mapped_column(String(50), default="Low", nullable=False)
     priority_score: Mapped[int] = mapped_column(Integer, default=10, nullable=False)
     priority_reasons: Mapped[str] = mapped_column(Text, default="[]", nullable=False)

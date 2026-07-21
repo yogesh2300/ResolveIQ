@@ -1,4 +1,4 @@
-"""SQLAlchemy engine, session, and FastAPI DB dependency for DeskPilot."""
+"""SQLAlchemy engine, session, and FastAPI DB dependency for ResolveIQ."""
 
 from __future__ import annotations
 
@@ -12,12 +12,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import DeclarativeMeta, Session, declarative_base, sessionmaker
 
-# backend/app/database.py -> project root (DeskPilot/)
+# backend/app/database.py -> ResolveIQ project root
 PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent.parent
 
 load_dotenv(PROJECT_ROOT / ".env")
 
-DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./backend/deskpilot.db")
+DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./backend/resolveiq.db")
 
 # SQLite needs check_same_thread=False for FastAPI's multi-threaded request handling.
 # PostgreSQL and other backends do not accept this argument.

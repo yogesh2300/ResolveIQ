@@ -8,14 +8,20 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from backend.app import models
+from backend.app.database import Base, engine
+from backend.app.routes import tickets
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 load_dotenv(PROJECT_ROOT / ".env")
 
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
+Base.metadata.create_all(bind=engine)
+
 app = FastAPI(
-    title="DeskPilot API",
-    description="Explainable Customer Support Ticket Triage CRM",
+    title="ResolveIQ API",
+    description="ResolveIQ — Explainable Customer Support Ticket Triage CRM",
     version="1.0.0",
 )
 
@@ -26,6 +32,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(tickets.router)
 
 
 class RootResponse(BaseModel):
@@ -39,9 +47,9 @@ class HealthResponse(BaseModel):
 
 @app.get("/", response_model=RootResponse)
 def root() -> RootResponse:
-    return RootResponse(message="Welcome to DeskPilot API")
+    return RootResponse(message="Welcome to ResolveIQ API")
 
 
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
-    return HealthResponse(status="healthy", service="DeskPilot API")
+    return HealthResponse(status="healthy", service="ResolveIQ API")
