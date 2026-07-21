@@ -15,7 +15,26 @@ from backend.app.routes import tickets
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 load_dotenv(PROJECT_ROOT / ".env")
 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+DEFAULT_FRONTEND_URL = "http://localhost:5173"
+FRONTEND_URL = os.getenv("FRONTEND_URL", "").strip() or DEFAULT_FRONTEND_URL
+ALLOWED_ORIGINS = list(
+    dict.fromkeys(
+        origin
+        for origin in (
+            FRONTEND_URL,
+            DEFAULT_FRONTEND_URL,
+            "http://127.0.0.1:5173",
+        )
+        if origin
+    )
+)
+
+# FRONTEND_URL supplies the exact production origin; this restricted regex
+# supports only ResolveIQ previews under this project's Vercel scope.
+VERCEL_PREVIEW_ORIGIN_REGEX = (
+    r"^https://resolve-[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+    r"-yogesh10023-7158s-projects\.vercel\.app$"
+)
 
 Base.metadata.create_all(bind=engine)
 
@@ -27,7 +46,8 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_URL],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=VERCEL_PREVIEW_ORIGIN_REGEX,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
